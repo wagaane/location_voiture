@@ -1,5 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, prefer_final_fields
 
+import 'package:app_01/models/image.dart';
+import 'package:app_01/models/voiture.dart';
+import 'package:app_01/pages/contact.dart';
+import 'package:app_01/pages/detail_voiture.dart';
+import 'package:app_01/pages/list_voitures.dart';
+import 'package:app_01/pages/login.dart';
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,219 +19,159 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int currentPageIndex = 1;
+  List<Voiture> cars = [
+    Voiture(
+        marque: 'BMW',
+        modele: 'Serie 1',
+        annee: '2024',
+        couleur: 'Blanc',
+        kilometrage: '0',
+        prix: '50.000',
+        photos: [Photo(url: 'mercedes.png'), Photo(url: 'bmw.jpg')],
+        description: 'Voiture robuste et puissante.'),
+    Voiture(
+        marque: 'MERCEDES',
+        modele: 'MERCEDES-BENZ GLC 220D ALGERIE 4M AMG',
+        annee: '2024',
+        couleur: 'Noir',
+        kilometrage: '0',
+        prix: '90.000',
+        photos: [Photo(url: 'mercedes.png'), Photo(url: 'bmw.jpg')],
+        description: 'Voiture robuste et puissante.'),
+    Voiture(
+        marque: 'MERCEDES',
+        modele: 'MERCEDES-BENZ GLC 220D ALGERIE 4M AMG',
+        annee: '2024',
+        couleur: 'Noir',
+        kilometrage: '0',
+        prix: '90.000',
+        photos: [Photo(url: 'mercedes.png'), Photo(url: 'bmw.jpg')],
+        description: 'Voiture robuste et puissante.'),
+    Voiture(
+        marque: 'MERCEDES',
+        modele: 'MERCEDES-BENZ GLC 220D ALGERIE 4M AMG',
+        annee: '2024',
+        couleur: 'Noir',
+        kilometrage: '0',
+        prix: '90.000',
+        photos: [Photo(url: 'mercedes.png'), Photo(url: 'bmw.jpg')],
+        description: 'Voiture robuste et puissante.'),
+    Voiture(
+        marque: 'MERCEDES',
+        modele: 'MERCEDES-BENZ GLC 220D ALGERIE 4M AMG',
+        annee: '2024',
+        couleur: 'Noir',
+        kilometrage: '0',
+        prix: '90.000',
+        photos: [Photo(url: 'mercedes.png'), Photo(url: 'bmw.jpg')],
+        description: 'Voiture robuste et puissante.'),
+    Voiture(
+        marque: 'MERCEDES',
+        modele: 'MERCEDES-BENZ GLC 220D ALGERIE 4M AMG',
+        annee: '2024',
+        couleur: 'Noir',
+        kilometrage: '0',
+        prix: '90.000',
+        photos: [Photo(url: 'mercedes.png'), Photo(url: 'bmw.jpg')],
+        description: 'Voiture robuste et puissante.'),
+  ];
+  // late final TabController _tabController;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(241, 239, 239, 1),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 40,
-            ),
-            ListTile(
-              title: Center(
-                child: Text(
-                  "Hello, Soumany!",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          elevation: 0,
+          // title: Text("Louer une voiture a un prix abordable !"),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(10),
+            child: Column(
+              children: [
+                TabBar(
+                  // controller: _tabController,
+                  tabs: [
+                    Column(
+                      children: [
+                        Icon(
+                          CupertinoIcons.car_fill,
+                          color: Colors.white,
+                          size: 24.0,
+                        ),
+                        Text(
+                          "Nos voitures",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.message,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "Nous contacter",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.login,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "Connexion",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-              ),
-              trailing: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.9),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 5), // changes position of shadow
+              ],
+            ),
+          ),
+        ),
+        // backgroundColor: Colors.grey[300],
+        body: TabBarView(
+          children: <Widget>[
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ],
-                  ),
-                  child: Icon(
-                    Icons.notifications,
-                    color: Colors.black,
-                  )),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                child: ListTile(
-                  leading: Icon(Icons.search),
-                  title: Text(
-                    "Location",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  trailing: Icon(Icons.save),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                child: ListTile(
-                  leading: Icon(Icons.date_range),
-                  title: Text(
-                    "July 08 - July 15",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                child: ListTile(
-                  leading: Icon(Icons.people_alt_sharp),
-                  title: Text(
-                    "2 Guests",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  trailing: Text(
-                    "- | +",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: 150.0,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 58, 198, 193),
-                  borderRadius: BorderRadius.all(Radius.circular(100))),
-              child: Center(
-                  child: Text(
-                "Search",
-                style: TextStyle(color: Colors.white),
-              )),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height / 2 ,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(210, 208, 220, 225),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.0),
-                      child: Image.asset("images/img.jpeg", fit: BoxFit.fill),
+                      labelText: 'Recherche',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.search,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
+                        onPressed: () {},
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            "details".toUpperCase(),
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            "braries in 479ms (compile: 17 ms, reload: 229 ms,\n reassemble: 202 ms)\n"+
-                            "braries in 479ms (compile: 17 ms, \nreload: 229 ms, reassemble: 202 ms)\n",
-                            style: TextStyle(
-                                fontSize: 12, ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                ),
+                ListVoiture(cars: cars),
+                
+                // ContactPage()
+              ],
             ),
+            ContactPage(),
+            LoginPage()
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
-        backgroundColor: Color.fromARGB(255, 75, 82, 93),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.white,),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Colors.white,),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Colors.white,),
-            label: 'Profile',
-          ),
-         
-        ],
-        currentIndex: 1,
-        selectedItemColor: Colors.blue,
-        onTap: (value) {
-          
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        child: Icon(Icons.add, color: Color.fromARGB(255, 75, 82, 93),),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      
-
     );
   }
 }
